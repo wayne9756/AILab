@@ -1,0 +1,10 @@
+article:Solution of ackley function based on particle swarm optimization algorithm//
+site: https://ieeexplore.org/document/9213634 
+
+each particles has their own position and velocity in every dimension;
+
+so that the varible of ackley is a particle instead of a swarm.
+
+the summation of x means that the sum of every dimension not the sum of every particles
+
+so I need to revised the compostion of particles which position and velocity are vectors 

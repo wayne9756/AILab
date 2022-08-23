@@ -1,0 +1,9 @@
+Neural networks are prone to overfitting because it learns the training samples very well
+
+SVM show poor performance when the data set is distorted by noise(miss values)
+
+shallow structure model??
+
+assume  smart meters have no errors
+
+what is the main difference between stochastic gradient descent and gradient descent?
