@@ -4,8 +4,8 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	srand(time(0));
-	int dimension = 10;
-	int n = 10;
+	int n = atoi(argv[1]);
+	int dimension = atoi(argv[2]);
 	int iteration = 0;
 //---------------------------------------------------//
 	Swarm flocks = Swarm(n,dimension);
