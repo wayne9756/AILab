@@ -36,16 +36,17 @@ inline void display(vector<int> &x, fstream &file){
 
 int main(int argc, char *argv[]){ // ./onemax bitlen run
 	srand(time(0));
-	int bit_len = atoi(argv[1]);
+	int bit_len = atoi(argv[1]);//argument 1 is bit_len
 	fstream file;
 	file.open("one_max.txt",ios::out);
-	for(int run = 0 ;run < atoi(argv[2]); run++){
-		int iteration = 0;
+	for(int run = 0 ;run < atoi(argv[3]); run++){//2 is run
+		int iteration = atoi(argv[2]);
+		int i = 0;
 		float T = 100;
 		vector<int> current_state(bit_len,0);//initicial vector
 		int current_energy = evalute(current_state, bit_len);
 		vector<int> new_state;
-		while(iteration < 1000 && T > 0){
+		while( i < iteration && T > 0){
 			new_state = random_select(current_state, bit_len);
 			int new_energy = evalute(new_state, bit_len);
 			double P = acceptance(new_energy, current_energy,T = 0.98*T);//P會趨近0有一定的機率接受不好的解
@@ -54,13 +55,10 @@ int main(int argc, char *argv[]){ // ./onemax bitlen run
 				current_state = new_state;
 				current_energy = new_energy;
 			}
-			++iteration;
-			file << iteration << " " << current_energy << endl;
-			/*
-			file << "iteration = " << iteration << ":";
+			++i;
+			file << "iteration = " << i << ":";
 			display(current_state, file);
 			file << ", the # of 1 is " << current_energy << ", rand()/RAND_MAX = " << x << ", P = " << P << endl;
-			*/
 		}
 	}
 	return 0;

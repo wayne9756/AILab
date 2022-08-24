@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
 inline int Evalute(vector<int> &x, int n ){
@@ -39,13 +40,14 @@ int main(int argc, char *argv[]){
 	int bit_len = atoi(argv[1]);//改成10
 	fstream file;
 	file.open("deception.txt",ios::out);
-	for(int run = 0 ;run < atoi(argv[2]); run++){
-		int iteration = 0;
+	for(int run = 0 ;run < atoi(argv[3]); run++){
+		int iteration = atoi(argv[2]);
+		int i = 0;
 		float T = 100;//init temp
 		vector<int> current_state(bit_len,0);//initicial vector
 		int current_energy = Evalute(current_state, bit_len);
 		vector<int> new_state;
-		while(iteration < 1000 && T > 0){
+		while(i < iteration && T > 0){
 			new_state = random_select(current_state, bit_len);
 			int new_energy = Evalute(new_state, bit_len );
 			double P = acceptance(new_energy, current_energy,T = 0.98*T);//P會趨近0
@@ -54,8 +56,8 @@ int main(int argc, char *argv[]){
 				current_state = new_state;
 				current_energy = new_energy;
 			}
-			++iteration;
-		file << "iteration = " << iteration << ":";
+			++i;
+		file << "iteration = " << i << ":";
 		display(current_state, file);
 		file << ", f(current_state) = " << current_energy << ", rand()/RAND_MAX = " << x << ", P = " << P << endl;
 		}
