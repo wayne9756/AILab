@@ -2,7 +2,7 @@
 
 using namespace std;
 
-extern d;
+extern d;//Dimension define at main.cpp
 
 void ackleyFunc(Swarm &swarm, int dimension){//answer & g_best = min(p_best)
 	int n = swarm.size();
@@ -41,7 +41,8 @@ void randPick(int &r1, int &r2, int &r3, int size){
 	while((r3 == r1)||(r3 == r2))r3 = rand()%size;
 }
 
-//=============class Particle==============//
+//=============Class Particle==============//
+
 Particle::Particle(int n):position(n),velocity(n),p_best(n,0.0){
 	for(int i = 0; i < n; i++){
 		position[i] = (double)(X_MAX-X_MIN)*rand()/(RAND_MAX+1.0)+X_MIN;//inital position
@@ -69,7 +70,7 @@ valarray<double> Particle::get_velocity()const{
 	return velocity;
 }
 
-//==============class Swarm=================//
+//==============Class Swarm=================//
 Swarm::Swarm(int numbers, int dimension){
 	for(int i = 0; i < numbers; i++)
 		particles.push_back(Particle(dimension));

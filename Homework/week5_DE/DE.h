@@ -27,7 +27,7 @@ const double PI = 3.14159;
 const double X_MAX = 32.0;
 const double X_MIN = -32.0;
 
-void ackleyFunc(Swarm&, int);//automatically update the value of p_best for each particles and g_best.
+void ackleyFunc(Swarm&, int);//Automatically update the value of p_best for each particles and g_best.
 double sumOfSquare(Particle&, int);
 double sumOfCos(Particle&, int);
 
