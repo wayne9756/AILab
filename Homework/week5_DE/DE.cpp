@@ -1,4 +1,4 @@
-#include "pso.h"
+#include "DE.h"
 
 using namespace std;
 
@@ -19,6 +19,7 @@ void ackleyFunc(Swarm &swarm, int dimension){//answer & g_best = min(p_best)
 		}
 	}
 }
+
 
 double sumOfSquare(Particle &particle, int d){
 	double sum = 0;

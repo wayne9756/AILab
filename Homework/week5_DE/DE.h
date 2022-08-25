@@ -54,5 +54,6 @@ class Swarm{
 		double get_ans();
 		vector<Particle> indiviual;
 	private:
+        double answer;
 		valarray<double> target;//save the best answer array
-}
+};
