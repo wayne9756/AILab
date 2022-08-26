@@ -22,10 +22,10 @@ double sumOfCos(valarray<double> array, int dimension){
 	return (double)sum/dimension;
 }	
 
-void randomPick(int &r1, int &r2, int &r3, int size){
+void randomPick(int &r1, int &r2, int &r3, int i, int size){
     r3 = rand()%size;	
-    while((r1 = rand()%size) == (r2 = rand()%size));
-	while((r3 == r1)||(r3 == r2))r3 = rand()%size;
+    while((r1 = rand()%size) == (r2 = rand()%size) || (r1 == i) || (r2 == i));
+	while((r3 == r1) || (r3 == r2) ||(r3 == i))r3 = rand()%size;
 }
 
 //=============Class Particle==============//
@@ -42,15 +42,6 @@ void Particle::set_target_vector(valarray<double> array){
 
 void Particle::set_donor_vector(valarray<double> array){
     donor_vector = array;
-}
-
-void Particle::set_trial_vector(int i, double value){
-    trial_vector[i] = value;
-
-}
-
-void Particle::set_donor_vector(int i, double value){
-    donor_vector[i] = value;
 }
 
 valarray<double>& Particle::get_target_vector(){
@@ -74,7 +65,7 @@ Swarm::Swarm(int numbers, int dimensions):answer(RAND_MAX),size(numbers),dimensi
 void Swarm::mutation(){
 	int r1, r2, r3;
 	for(int i = 0; i < size; ++i){
-		randomPick(r1,r2,r3,size);//this make r1 != r2 != r3
+		randomPick(r1,r2,r3,i,size);//this make r1 != r2 != r3
         Particle &pi = particles[i];//this method will not spend any memory
         Particle &pr1 = particles[r1];
         Particle &pr2 = particles[r2];
@@ -112,16 +103,16 @@ void Swarm::selection(){
         }
 }
 
-valarray<double> Swarm::get_target(){
+valarray<double> Swarm::get_target()const{
     return target;
 }
 
-double Swarm::get_answer(){
+double Swarm::get_answer()const{
     return answer;
 }
 
 void Swarm::output(){
-    cout << "the best answer (x1,x3,....,x" << dimension << ") = (";
+    cout << "The best answer (x1,x2,...,x" << dimension << ") = (";
     for(int i = 0; i < dimension; i++){
         cout << target[i] ;
         if(i != dimension -1) cout << ", ";

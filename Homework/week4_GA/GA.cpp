@@ -19,6 +19,7 @@ int bestFitness(int best, Group& group){
 	}
 	return best;
 }
+
 /*
 void selection(Group &vec){ //Roulette
 	Group temp;
@@ -39,7 +40,7 @@ void selection(Group &vec){ //Roulette
 	}
 	vec = temp;
 }*/
-void selection(Group &vec){
+void selection(Group &vec){//compete
 	Group temp;
 	int group_size = vec.size();
 	int sum  = 0;

@@ -11,14 +11,11 @@ int main(int argc, char *argv[]){
 	const int bit_len = atoi(argv[1]);
 	const int group_size = atoi(argv[2]);
 	const int target_fitness = bit_len;
-	Group group,new_group;
-	//fstream file;
-	//file.open("output.txt",ios::out);
-    group.reserve(1000);new_group.reserve(1000);
-	for(int i = 0; i < group_size; i++)
-		group.push_back(Indiviual(bit_len));
 	int best_fitness = 0;
 	int iteration = 0;
+	Group group(group_size),new_group;
+    group.reserve(1000);
+		group.push_back(Indiviual(bit_len));
 	while(best_fitness != target_fitness){
 		selection(group);//天擇
 		crossover(group,bit_len);//交配
