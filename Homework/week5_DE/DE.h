@@ -5,55 +5,59 @@
 #include<cfloat>
 #include<valarray>
 
-/* position is a vector, length of vector is dimension
- * x is a vector in f(x).
- * g_best is the minmum value of all p_best
- * the target is to minimize the output of f(x) and record the x.
- * x = [-32,32]
- * dimension == the number of particles
- * every particles have their own position initially
- *
-*/
+/* Population have two parameters, one is population size another is the generation.
+ * The generation gradually increase after finishing a iteration.
+ * The population must have difference in every generation.
+ */ 
+
 using namespace std;
 
 class Particle;
 class Swarm;
 
-const double INERTIA_WEIGHT = 0.85;
-const double LEARNING_RATE1 = 2;
-const double LEARNING_RATE2 = 2;
-const double V_MAX = 0.7;
+const double mutation_factor = 0.8;//F
+const double crossover_rate = 0.6;
+const double x_max = 32.0;
+const double x_min = -32.0;
 const double PI = 3.14159;
-const double X_MAX = 32.0;
-const double X_MIN = -32.0;
 
-void ackleyFunc(Swarm&, int);//Automatically update the value of p_best for each particles and g_best.
-double sumOfSquare(Particle&, int);
-double sumOfCos(Particle&, int);
+
+void randomPick(int &, int &, int&, int);
+double ackleyFunc(valarray<double>, int);//Automatically update the value of p_best for each particles and g_best.
+double sumOfSquare(valarray<double>, int);
+double sumOfCos(valarray<double>, int);
 
 class Particle{
 	public:
 		Particle(int);
-		void set_position(valarray<double>);
-		valarray<double> get_position();
-		void set_ans(double);
-		double get_ans();
+		void set_target_vector(valarray<double>);
+        void set_donor_vector(valarray<double>);
+        void set_donor_vector(int,double);
+        void set_trial_vector(int,double);
+		valarray<double>& get_target_vector();
+        valarray<double>& get_donor_vector();
+        valarray<double>& get_trail_vector();
 	private:
-		valarray<double> position;//[-32,32]
+        int dimension;
+		valarray<double> target_vector;//[-32,32]
+        valarray<double> donor_vector;
+        valarray<double> trial_vector;
 };
 
 class Swarm{
 	public:
 		Swarm(){};
 		Swarm(int,int);
-		int size()const;
-		valarray<double> mutation();//generate donor vector
-		valarray<double> crossover();
+		void mutation();//generate donor vector
+		void crossover();
 		void selection();
-		void set_ans(double);
-		double get_ans();
-		vector<Particle> indiviual;
-	private:
-        double answer;
+        void output();
+        double get_answer();
+        valarray<double> get_target();
 		valarray<double> target;//save the best answer array
+	private:
+        int size;
+        int dimension;
+        double answer;
+		vector<Particle> particles;
 };
