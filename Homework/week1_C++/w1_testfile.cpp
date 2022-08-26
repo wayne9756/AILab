@@ -1,5 +1,5 @@
 //我把函式include進來了,直接編譯此檔就可以ㄌ
-#include "homework1.cpp"
+#include "homework.cpp"
 int main() {
     int gcd_arr[50][3] = {
         {438, 30, 6},   {597, 117, 3}, {836, 561, 11}, {9, 162, 9},    {388, 856, 4},

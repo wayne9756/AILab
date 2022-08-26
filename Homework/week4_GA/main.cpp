@@ -9,7 +9,7 @@ inline int max(int a, int b){return (a>b?a:b);}
 int main(int argc, char *argv[]){
 	srand(time(NULL));
 	const int bit_len = atoi(argv[1]);
-	const int group_size = 20;
+	const int group_size = atoi(argv[2]);
 	const int target_fitness = bit_len;
 	Group group,new_group;
 	//fstream file;

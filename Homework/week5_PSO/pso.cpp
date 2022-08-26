@@ -29,7 +29,7 @@ double sumOfSquare(Particle &particle, int d){
 double sumOfCos(Particle &particle, int d){
 	double sum = 0;
 	for(int i = 0; i < d; i++){
-		sum += cos((double)2*PI*(particle.get_position()).sum());
+		sum += cos((double)2*PI*(particle.get_position()[i]));
 	}
 	return (double)sum/d;
 }	

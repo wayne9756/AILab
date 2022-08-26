@@ -62,12 +62,12 @@ int main(int argc, char *argv[]){
 	int i = 0;
 	vector<int> tabu_list(tabu_len);
 	file.open("deception.txt", ios::out);
-	for(int run = 0; run < atoi(argv[2]); run++){
+	for(int run = 0; run < atoi(argv[3]); run++){
 		int iteration = 0;
 		vector<int> current_state(bit_len,0);
 		int current_energy = evalute(current_state, bit_len);
 		vector<int> new_state;
-		while(iteration < 100){
+		while(iteration < atoi(argv[2])){
 			i = i%tabu_len;
 			new_state = tabu_select(current_state, tabu_list, bit_len);
 			int new_energy = evalute(new_state, bit_len);

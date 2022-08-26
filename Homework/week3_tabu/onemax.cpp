@@ -54,13 +54,13 @@ int main(int argc, char *argv[]){// ./a.out bit_len run
 	int tabu_len = 10;//the size of tabu_list
 	int i = 0;
 	vector<int> tabu_list(tabu_len);
-	file.open("one_max.txt",ios::out);
-	for(int run = 0 ;run < atoi(argv[2]); run++){
+	file.open("onemax.txt",ios::out);
+	for(int run = 0 ;run < atoi(argv[3]); run++){
 		int iteration = 0;
 		vector<int> current_state(bit_len,0);//initicial vector
 		int current_energy = Evalute(current_state, bit_len);
 		vector<int> new_state;
-		while(iteration < 100){
+		while(iteration < atoi(argv[2])){
 			i = i%tabu_len;//it makes tabu_list FIFO
 			new_state = tabu_select(current_state, tabu_list, bit_len);//pick a new state and not exist in tabu_list
 			int new_energy = Evalute(new_state, bit_len);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]){// ./a.out bit_len run
 				current_energy = new_energy;
 			}
 			display(current_state, file);
-			file << "iteration = " << iteration << endl;
+			file << ", iteration = " << iteration << endl;
 			++iteration;
 			++i;
 		}
