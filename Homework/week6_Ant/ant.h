@@ -15,21 +15,22 @@ class Ant{
     public:
         Ant(){};
         Ant(int);
-        int nextVertex();//Return next vertex.
         int get_location()const;
-    private:
         vector<int> path;
         vector<bool> visited;
-        int data_number;
         int location;
+    private:
+        int data_number;
         int length;
 };
 
 class Graph{
     public:
-        Graph(string,int,int);//This string is the dataset
+        Graph(string,int, int);//This string is the dataset
         void updatePheromone();
-        int sumOfAnts(int ,int);
+        double calDistance(int, int)const;
+        void goNextVertex();//Return next vertex.
+        int sumOfAnts(int, int)const;
     private:
         int data_number;
         int ant_number;
