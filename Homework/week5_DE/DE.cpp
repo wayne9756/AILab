@@ -57,7 +57,7 @@ valarray<double>& Particle::get_trail_vector(){
 }
 
 //==============Class Swarm=================//
-Swarm::Swarm(int numbers, int dimensions):answer(RAND_MAX),size(numbers),dimension(dimensions){
+Swarm::Swarm(int numbers, int dimensions):size(numbers),dimension(dimensions),answer(RAND_MAX){
 	for(int i = 0; i < numbers; i++)
 		particles.push_back(Particle(dimension));
 }
