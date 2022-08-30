@@ -2,7 +2,7 @@
 
 using namespace std;
 //-------------class Graph-----------------//
-Graph::Graph(string dataname):x(51),y(51){
+Graph::Graph(string dataname,int number,int ants_number):data_number(number),ant_number(ants_number),x(data_number),y(data_number),pheromone(data_number,vector<double> (data_number,0)),distance(data_number,vector<double> (data_number,0)){
     fstream file;
     file.open(dataname,ios::in);
     if(!file){
@@ -21,6 +21,8 @@ Graph::Graph(string dataname):x(51),y(51){
         i++;
         }
     }
+
+    
 }
 
 double Graph::distance(int v1, int v2){
@@ -30,14 +32,36 @@ double Graph::distance(int v1, int v2){
     return 0.0;
 }
 
+void Graph::updatePheromone(){
+    for(int i = 0; i < data_number; i++)
+        for(int j = i; j < data_number; j++)
+            pheromone[j][i] = pheromone[i][j] = distance[i][j]/((data_number-1) * distance(i,j));
+}
+
+int Graph::sumOfAnts(int i, int j){
+    int sum = 0;
+    for(int k = 0; k < ant_number; k++)
+        if(ants[k].get_location() == i or ants[k].get_location() == j)
+            ++sum;
+    return sum;
+}
+
+int Ant::get_location()const{
+    return location;
+}
+
 //---------------class Ant------------------//
 
+Ant::Ant(int location):path(data_number,0), visited(data_number,false){
+    visited[location] = true;
+    path[0] = location;
+}
 
-
-
-
-
-
-
+int Ant::nextVertex(){
+    int i = rand()%data_number;
+    double heuristic_information = (double)1/
+    while(visited[i] == true)i = rand()%data_number;
+    return i;
+}
 
 

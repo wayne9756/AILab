@@ -10,23 +10,33 @@ using namespace std;
 const double Q = 5;
 const double evaporation_rate = 0.5;
 
+
 class Ant{
     public:
-        Ant();
+        Ant(){};
         Ant(int);
-        int nextVertex();//return next vertex.
-        void updatePheromone();
+        int nextVertex();//Return next vertex.
+        int get_location()const;
     private:
-        vector<int> allowed;
-        vector<int> visited;
+        vector<int> path;
+        vector<bool> visited;
+        int data_number;
+        int location;
+        int length;
 };
 
 class Graph{
     public:
-        Graph(string);//this int is the number of vertex.
-        double distance(int, int);
+        Graph(string,int,int);//This string is the dataset
+        void updatePheromone();
+        int sumOfAnts(int ,int);
     private:
+        int data_number;
+        int ant_number;
         vector<int> x;
         vector<int> y;
+        vector<Ant> ants;
+        vector<vector <double> >pheromone;
+        vector<vector <double> >distance;
 };
 
