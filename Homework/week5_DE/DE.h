@@ -21,7 +21,6 @@ const double x_max = 32.0;
 const double x_min = -32.0;
 const double PI = 3.14159;
 
-
 void randomPick(int &, int &, int&, int, int);
 double ackleyFunc(valarray<double>, int);//Automatically update the value of p_best for each particles and g_best.
 double sumOfSquare(valarray<double>, int);

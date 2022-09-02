@@ -3,10 +3,12 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    srand(time(0));
+    srand(time(0)*1000);
 	int number = atoi(argv[1]);//the number of particle.
     int dimension = atoi(argv[2]);//the number of dimension.
-    int iteration = dimension * 100;
+    int iteration = dimension * 1000;
+
+//--------------------------------------------------------------------------//
 	Swarm population = Swarm(number,dimension);
 	for(int i = 0; i < iteration; i++){
 		population.mutation();
