@@ -86,8 +86,6 @@ void Graph::goNextVertex(){
 
 void Graph::updatePheromone(){
     
-
-
 }
 
 
