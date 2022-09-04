@@ -8,9 +8,12 @@
 #include<cmath>
 
 using namespace std;
+class Ant;
+class Graph;
 
-
-double path_length(vector<int>&, vector< vector<double> > &);
+inline double path_length(vector<int>&, vector< vector<double> > &);
+inline vector<int> twoOptSwap(vector<int>, int, int);
+inline bool myCompare(const Ant &, const Ant &);
 
 typedef struct point{
     int x;
@@ -19,11 +22,12 @@ typedef struct point{
 
 class Ant{
     public:
+        Ant(){};
         Ant(int);
         void go_ahead(int, double);
         int get_location(int i = 0)const{return path[step-i];};
         bool finish()const{return visited.all();};
-        bool visit(int i){return visited[i];};
+        bool visit(int i)const{return visited[i];};
         double get_length()const{return length;};
         double get_sum_length()const{return sum_length;};
         vector<int> path;//space(O(data_number))
@@ -40,7 +44,7 @@ class Graph{
         void updatePheromone();
         void goNextVertex();//Return next vertex.
         void twoOptimization();
-        void tsp()const;
+        void tsp();
         bool terminate()const;
         double cal_distance(int, int)const;
     private:

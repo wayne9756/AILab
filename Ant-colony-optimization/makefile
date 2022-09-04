@@ -1,2 +1,2 @@
 ALL:
-	g++ -g main.cpp ant.cpp
+	g++ -O3 main.cpp ant.cpp

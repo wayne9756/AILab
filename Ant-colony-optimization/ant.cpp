@@ -2,12 +2,21 @@
 
 using namespace std;
 
-inline double path_length(vector<int> &path, vector< vector<double> > &table){
+double path_length(vector<int> &path, vector< vector<double> > &table){
     double sum_distance = 0.0;
         for(int i = 0; i < (int)path.size()-1; i++){
             sum_distance += table[path[i]][path[i+1]];
         }
         return sum_distance;
+}
+
+vector<int> twoOptSwap(vector<int> path, int i, int j){
+    reverse(path.begin()+i,path.begin()+j);   
+    return path;
+}
+
+bool myCompare(const Ant &left, const Ant &right){
+    return left.get_sum_length() < right.get_sum_length();
 }
 
 //-------------class Graph-----------------//
@@ -95,17 +104,18 @@ void Graph::twoOptimization(){
     if( t > 4 )
     for(int k = 0; k < ant_number; k++){
         Ant &ant = ants[k];
-        for(int i = 0; i < 2*t; i++){
-            int index1 = rand()%t;//index1[0,t)
-            //int v1 = ant.get_location(t - index1);
-            int index2 = rand()%(index1+1);//index1 
-            //int v2 = ant.get_location(t - index2);
-            vector<int> new_path(ant.path);
-            reverse(new_path.begin()+index1,new_path.begin()+index2);
-            if(ant.get_sum_length() > path_length(new_path,distance)){
-                ant.path = new_path;
-                ant.sum_length = path_length(new_path,distance);
-                cout << "improve!!" << endl;
+        bool improved = true;
+        while(improved){
+            improved = false;
+            for(int i = 1; i < t-1; i++){
+                for(int j = i+1; j < t; j++){
+                    vector<int> new_path = twoOptSwap(ant.path,i,j);
+                    if(ant.get_sum_length() > path_length(new_path,distance)){
+                        ant.path = new_path;
+                        ant.sum_length = path_length(new_path,distance);
+                        improved = true;
+                    }
+                }
             }
         }
     }
@@ -117,9 +127,15 @@ bool Graph::terminate()const{
     return false;
 }
 
-void Graph::tsp()const{
-    for(int i = 0; i < ant_number; i++){
-        cout << "DISTANCE = " << ants[i].get_sum_length() << endl;
+void Graph::tsp(){
+    sort(ants.begin(),ants.end(),myCompare);
+    for(int i = 0; i < 5; i++){
+        const Ant &ant = ants[i];
+        cout << "DISTANCE = " << ant.get_sum_length() << endl;
+        cout << "Ant " << i << "th's path = "; 
+        for(int j = 0; j < data_number; j++)
+            cout << ant.path[j]+1 << "-> ";
+        cout << endl;
     }
 }
 
@@ -137,4 +153,5 @@ void Ant::go_ahead(int position, double distance){
     sum_length += length; 
     visited[path[step]] = true;
 }
+
 
