@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
 #include<fstream>
 #include<string>
 #include<bitset>
@@ -8,8 +9,8 @@
 
 using namespace std;
 
-const double Q = 3;
-const double evaporation_rate = 0.7;
+
+double path_length(vector<int>&, vector< vector<double> > &);
 
 typedef struct point{
     int x;
@@ -17,36 +18,42 @@ typedef struct point{
 }Data;
 
 class Ant{
-    private:
-        int data_number;//
     public:
-        Ant(){};
         Ant(int);
-        vector<int> path;
-        bitset<(size_t) 51> visited; 
-        int get_location()const;
-        int pre_location;
-        int now_location;
+        void go_ahead(int, double);
+        int get_location(int i = 0)const{return path[step-i];};
+        bool finish()const{return visited.all();};
+        bool visit(int i){return visited[i];};
+        double get_length()const{return length;};
+        double get_sum_length()const{return sum_length;};
+        vector<int> path;//space(O(data_number))
+        double sum_length;
+    private:
         int step;//This parameter is the number of step.k
         double length;//This parameter is the path length of ant.
-        double sum_length;
+        bitset<(size_t)51> visited; //space(O(data_number))
 };
 
 class Graph{
     public:
-        Graph(string,int, int);//This string is the dataset
+        Graph(string,int, int, double, double,double,double);//This string is the dataset
         void updatePheromone();
-        double calDistance(int, int)const;
         void goNextVertex();//Return next vertex.
-        int sumOfAnts(int, int)const;
+        void twoOptimization();
+        void tsp()const;
         bool terminate()const;
-        void TSP()const;
+        double cal_distance(int, int)const;
     private:
-        int data_number;
-        int ant_number;
+        int t = 0;
+        const int data_number;
+        const int ant_number;
+        const double Q;
+        const double evaporation_rate;//rho
+        const double alpha;
+        const double beta;
         vector<Ant> ants;
         vector<Data> data;//Testing set story in this vector
-        vector<vector <double> >pheromone;
-        vector<vector <double> >distance;
+        vector<vector <double> >pheromone;//Pheromone table
+        vector<vector <double> >distance;//Distance for each city.
 };
 
