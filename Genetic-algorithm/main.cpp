@@ -15,7 +15,8 @@ int main(int argc, char *argv[]){
 	int iteration = 0;
 	Group group(group_size),new_group;
     group.reserve(1000);
-		group.push_back(Indiviual(bit_len));
+    for(int i = 0; i < group_size; i++)
+        group.push_back(Indiviual(bit_len));
 	while(best_fitness != target_fitness){
 		selection(group);//天擇
 		crossover(group,bit_len);//交配

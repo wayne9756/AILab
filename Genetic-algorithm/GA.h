@@ -15,7 +15,7 @@ typedef vector<Indiviual> Group;
 void selection(Group&);//Roulette wheel method.如果當indiviual數變多時扁平化
 void crossover(Group&, int);//change randomly by picking a point
 void display(Indiviual&,int);
-int bestFitness(int, Group&);
+int bestFitness(int,const Group&);
 Group mutation(Group&, int);//when rand() < 0.1 then mutate
 
 class Indiviual{

@@ -13,7 +13,7 @@ void display(Indiviual &vec,int bit_len){
 	cout << endl;
 }
 
-int bestFitness(int best, Group& group){
+int bestFitness(int best,  const Group& group){
 	for(unsigned int i = 0; i < group.size()-1; i++){
 		best = max(best,max(group[i].fitness(),group[i+1].fitness()));
 	}
@@ -40,6 +40,7 @@ void selection(Group &vec){ //Roulette
 	}
 	vec = temp;
 }*/
+
 void selection(Group &vec){//compete
 	Group temp;
 	int group_size = vec.size();
