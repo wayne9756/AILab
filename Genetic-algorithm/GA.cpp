@@ -48,9 +48,9 @@ void selection(Group &vec){//compete
 	for(int i = 0; i < group_size; i++)
 	 	sum += vec[i].fitness();
 	for(int i = 0; i < group_size; i++)
-		vec[i].probability = (float)vec[i].fitness()/sum;
+		vec[i].probability = (double)vec[i].fitness()/sum;
 	sort(vec.begin(),vec.end(),std::greater<Indiviual>());
-	vec.erase(vec.begin()+10,vec.end());
+	vec.erase(vec.begin()+5,vec.end());
 }
 
 bool Indiviual::operator>(const Indiviual &right)const{

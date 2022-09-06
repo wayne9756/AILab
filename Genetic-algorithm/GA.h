@@ -25,7 +25,7 @@ class Indiviual{
 		int bit_len;
 		vector<int> bits;
 		int fitness()const;
-		float probability = 0;
+		double probability = 0;
 		bool operator>(const Indiviual&)const;
 };
 
