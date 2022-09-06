@@ -16,6 +16,7 @@ int main(){
         graph.twoOptimization();//optional
         graph.updatePheromone();
     }
-    graph.tsp();//output
+    //graph.tsp();//output
+    graph.f_tsp();
     return 0;
 }

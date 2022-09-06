@@ -45,6 +45,7 @@ class Graph{
         void goNextVertex();//Return next vertex.
         void twoOptimization();
         void tsp();
+        void f_tsp();
         bool terminate()const;
         double cal_distance(int, int)const;
     private:

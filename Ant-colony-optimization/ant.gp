@@ -1,11 +1,14 @@
 set grid
 set term png 
-set output 'DE_30.png'
-set xlabel 'iteration'
-set ylabel 'ackley output'
-set title 'DE(n=30,D=30,iteration=30000,run=30)'
-set xrange[0:30000]
-set yrange[0:25]
-set xtics 0,3000
-set ytics 0,1.5
-plot 'output.txt' using 1:2 smooth bezier with lines linestyle 3 title 'de'
+set output 'tsp.png'
+set xlabel 'x'
+set ylabel 'y'
+set title 'tsp with 2-opt'
+set xrange[0:70]
+set yrange[0:80]
+set xtics 0,10
+set ytics 0,10
+plot "output.txt" with linespoints 
+#plot 'output.txt' using 1:2 smooth bezier with linespoints title 'tsp' 
+#plot "output.txt" every :::0::1 with lp, "" every :::2::2 with points
+

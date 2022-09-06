@@ -20,6 +20,7 @@ bool myCompare(const Ant &left, const Ant &right){
 }
 
 //-------------class Graph-----------------//
+
 Graph::Graph(string dataname,int number,int ants_number,double Q,double rho,double alpha, double beta):data_number(number),ant_number(ants_number),Q(Q),evaporation_rate(rho),alpha(alpha),beta(beta),ants(ants_number,Ant(data_number)),data(data_number),pheromone(data_number,vector<double> (data_number,0)),distance(data_number,vector<double> (data_number,0)){
     fstream file;
     file.open(dataname,ios::in);
@@ -101,7 +102,7 @@ void Graph::goNextVertex(){
 }
 
 void Graph::twoOptimization(){
-    if( t > 4 )
+    if( t > 3 )
     for(int k = 0; k < ant_number; k++){
         Ant &ant = ants[k];
         bool improved = true;
@@ -137,6 +138,17 @@ void Graph::tsp(){
             cout << ant.path[j]+1 << "-> ";
         cout << endl;
     }
+}
+
+void Graph::f_tsp(){
+    sort(ants.begin(),ants.end(),myCompare);
+    const Ant &ant = ants[0];//the best ant.
+    fstream file;
+    file.open("output.txt",ios::out);
+    for(int i = 0; i <= data_number; i++)
+        file << data[ant.path[i%data_number]].x << " " << data[ant.path[i%data_number]].y << endl;
+    cout << ant.get_sum_length() << endl;
+
 }
 
 //---------------class Ant------------------//
