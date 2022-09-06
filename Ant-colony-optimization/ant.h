@@ -18,7 +18,7 @@ inline bool myCompare(const Ant &, const Ant &);
 typedef struct point{
     int x;
     int y;
-}Data;
+}Point;
 
 class Ant{
     public:
@@ -56,7 +56,7 @@ class Graph{
         const double alpha;
         const double beta;
         vector<Ant> ants;
-        vector<Data> data;//Testing set story in this vector
+        vector<Point> data;//Testing set story in this vector
         vector<vector <double> >pheromone;//Pheromone table
         vector<vector <double> >distance;//Distance for each city.
 };
