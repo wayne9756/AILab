@@ -6,10 +6,10 @@ int main(){
     srand(time(NULL));
     int ant_number = 50;
     int data_number = 51;
-    double Q = 2.0;
-    double rho = 0.7;
-    double alpha = .5;
-    double beta = 3.0;
+    double Q = 5.0;
+    double rho = 0.8;
+    double alpha = .4;
+    double beta = 4.0;
     Graph graph = Graph("data.txt",data_number,ant_number,Q,rho,alpha,beta);//Graph會長螞蟻
     while(!graph.terminate()){
         graph.goNextVertex();
