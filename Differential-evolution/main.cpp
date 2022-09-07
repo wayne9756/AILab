@@ -7,7 +7,7 @@ int main(int argc, char* argv[]){
     int number = atoi(argv[1]);//the number of particle.
     int dimension = atoi(argv[2]);//the number of dimension.
     int run = atoi(argv[3]);
-    int iteration = dimension * 1000;
+    int iteration = dimension * 10000;
     fstream file;
     file.open("output.txt",ios::out);
     vector<double> output(iteration);
